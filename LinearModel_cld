@@ -1,0 +1,21 @@
+import matplotlib.pyplot as plt
+import tensorflow as tf
+import numpy as np
+
+from tensorflow.examples.tutorials.mnist import input_data
+data = input_data.read_data_sets("data/mnist", one_hot=True)
+
+data.test.cls = np.array([label.argmax() for label in data.test.labels])
+
+# Create funciton for plotting
+
+# Define constants
+img_size = 28
+img_size_flat = img_size * img_size
+img_shape = (img_size, img_size)
+num_classes = 10
+
+# Define variables using tensorflow
+x = tf.placeholder(tf.float32, [None, img_size_flat])
+y_true = tf.placeholder(tf.float32, [None, num_classes])
+y_true_cls = tf.placeholder(tf.float32, [None])
